@@ -19,9 +19,9 @@ const pusher = new Pusher({
   useTLS: true
 });
 
-pusher.trigger("my-channel", "my-event", {
-  message: "hello world"
-});
+// pusher.trigger("my-channel", "my-event", {
+//   message: "hello world"
+// });
 
 
 
