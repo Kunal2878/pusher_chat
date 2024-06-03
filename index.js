@@ -45,4 +45,5 @@ app.post('/api/chat', (req, res) => {
 // app.listen(port, () => {
 //   console.log(`Server listening on port ${port}`,process.env.PUSHER_CLUSTER);
 // });
+console.log("Server listening on vercel");
 module.exports = app;
