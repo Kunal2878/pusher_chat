@@ -34,12 +34,12 @@ const app = express();
 app.use(cors({ origin: true })); // Adjust origin as needed
 
 // Example route to trigger a Pusher event
-app.post('/api/chat', (req, res) => {
-  const { message } = req.body;
+// app.post('/api/chat', (req, res) => {
+//   const { message } = req.body;
 
-  pusher.trigger('chat-channel', 'new-message', { message });
-  res.json({ message: 'Message sent successfully' });
-});
+//   pusher.trigger('chat-channel', 'new-message', { message });
+//   res.json({ message: 'Message sent successfully' });
+// });
 
 // Start the server
 // app.listen(port, () => {
