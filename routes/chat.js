@@ -16,7 +16,7 @@ const pusher = new Pusher({
   useTLS: true
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/chat", async (req, res, next) => {
   const { message } = req.body;
 
 
@@ -29,7 +29,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.get("/", async (req, res, next) => {
+router.get("/chat", async (req, res, next) => {
   return res.status(200).json({
     title: "Express Testing",
     message: "The app is working properly!",
