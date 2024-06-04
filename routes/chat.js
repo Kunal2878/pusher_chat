@@ -16,7 +16,7 @@ const pusher = new Pusher({
   useTLS: true
 });
 
-router.get("/", async (req, res, next) => {
+router.post("/chat", async (req, res, next) => {
   const { message } = req.body;
 
 
@@ -28,7 +28,18 @@ router.get("/", async (req, res, next) => {
     res.status(500).json({ message: 'Failed to send message' });
   }
 });
+router.post("/", async (req, res, next) => {
+  const { message } = req.body;
 
+
+  try {
+    await pusher.trigger('chat-channel', 'new-message', { message });
+    res.json({ message: 'Message sent successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to send message' });
+  }
+});
 // router.get("/", async (req, res, next) => {
 //   return res.status(200).json({
 //     title: "Express Testing",
