@@ -16,7 +16,7 @@ const pusher = new Pusher({
   useTLS: true
 });
 
-router.post("/chat", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   const { message } = req.body;
 
 
