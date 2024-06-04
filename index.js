@@ -27,12 +27,13 @@ const pusher = new Pusher({
 
 const app = express();
 const port = process.env.PORT || 3000;
-
+const chat = require("./routes/chat");
 // Replace with your Pusher credentials
 
 // CORS configuration (if necessary)
 app.use(cors({ origin: true })); // Adjust origin as needed
-
+app.use(express.json());
+app.use("/chat", chat);
 // Example route to trigger a Pusher event
 // app.post('/api/chat', (req, res) => {
 //   const { message } = req.body;
@@ -46,4 +47,4 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`,process.env.PUSHER_CLUSTER);
 });
 console.log("Server listening on vercel");
-module.exports = app;
+// module.exports = app;
