@@ -26,7 +26,7 @@ const pusher = new Pusher({
 
 
 const app = express();
-// const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 // Replace with your Pusher credentials
 
@@ -42,8 +42,8 @@ app.use(cors({ origin: true })); // Adjust origin as needed
 // });
 
 // Start the server
-// app.listen(port, () => {
-//   console.log(`Server listening on port ${port}`,process.env.PUSHER_CLUSTER);
-// });
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`,process.env.PUSHER_CLUSTER);
+});
 console.log("Server listening on vercel");
 module.exports = app;
