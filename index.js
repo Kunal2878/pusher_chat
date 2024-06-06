@@ -19,7 +19,8 @@ app.use(express.json());
 app.use("/chat", chat);
 app.post("/chat", async (req, res, next) => {
   const { mesg } = req.body;
-  
+  console.log(mesg)
+  console.log(mesg.room_name)
 
   try {
     await pusher.trigger(mesg.room_name, 'new-message', { mesg });
