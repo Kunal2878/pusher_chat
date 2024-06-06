@@ -18,11 +18,11 @@ app.use(cors({ origin: true })); // Adjust origin as needed
 app.use(express.json());
 app.use("/chat", chat);
 app.post("/chat", async (req, res, next) => {
-  const { message } = req.body;
-
+  const { mesg } = req.body;
+  
 
   try {
-    await pusher.trigger('chat-channel', 'new-message', { message });
+    await pusher.trigger(mesg.room_name, 'new-message', { mesg });
     res.json({ message: 'Message sent successfully' });
   } catch (error) {
     console.error(error);
