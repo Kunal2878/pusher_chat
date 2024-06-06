@@ -24,7 +24,7 @@ app.post("/chat", async (req, res, next) => {
 
   try {
     await pusher.trigger(mesg.room_name, 'new-message', { mesg });
-    res.json({ message: 'Message sent successfully' });
+    res.json({ message: mesg });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to send message' });
