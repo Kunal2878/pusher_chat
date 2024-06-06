@@ -19,7 +19,7 @@ app.use(express.json());
 app.use("/chat", chat);
 app.post("/chat", async (req, res, next) => {
   const { mesg } = req.body;
-  console.log(mesg)
+  console.log(req.body)
   console.log(mesg.room_name)
 
   try {
