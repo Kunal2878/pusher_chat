@@ -37,23 +37,23 @@ router.post("/", async (req, res, next) => {
     console.error(error);
     res.status(500).json({ message: 'Failed to send message' });
   }
-  const chat_data=
-    {
-      sender:sender,
-      message:message,
-      room:room,
+  // const chat_data=
+  //   {
+  //     sender:sender,
+  //     message:message,
+  //     room:room,
       
-    }
+  //   }
   
-  const { data, error } = await supabase.from('Chat').insert([chat_data]);
+  // const { data, error } = await supabase.from('Chat').insert([chat_data]);
 
-  if (error) {
-    console.error('Error inserting data:', error);
+  // if (error) {
+  //   console.error('Error inserting data:', error);
 
-  } else {
-    console.log('Data inserted successfully:', data);
+  // } else {
+  //   console.log('Data inserted successfully:', data);
 
-  }
+  // }
 }
 );
 
