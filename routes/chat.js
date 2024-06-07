@@ -21,8 +21,12 @@ const pusher = new Pusher({
 router.post("/", async (req, res, next) => {
 
   // const {message,room,email,time} = req.body;
-  const {mesg} = req.body;
-  const {message,room,email,time}=mesg
+  const mesg = req.body;
+  console.log(mesg)
+  const message=mesg.message
+  const room=mesg.room
+  const email=mesg.email
+  const time=mesg.time
 
   try {
 
