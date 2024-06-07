@@ -15,22 +15,19 @@ const pusher = new Pusher({
   cluster:  process.env.PUBLIC_PUSHER_CLUSTER,
   useTLS: true
 });
-// const pusher = new Pusher({
-//   appId: "1813007",
-//   key: "e01912a32c34c280e6eb",
-//   secret: "6bcb8f5f082d93a4ba8c",
-//   cluster: "ap2",
-//   useTLS: true
-// });
+
 
 
 router.post("/", async (req, res, next) => {
 
-  const {message,room,email,time} = req.body;
+  // const {message,room,email,time} = req.body;
+  const {mesg} = req.body;
+  const {message,room,email,time}=mesg
 
   try {
 
-    await pusher.trigger(room, 'new-message', { message });
+    // await pusher.trigger(room, 'new-message', { message });
+    await pusher.trigger(room, 'new-message', mesg);
     res.json({ message: 'Message  successfully sent' });
   } catch (error) {
     console.error(error);
