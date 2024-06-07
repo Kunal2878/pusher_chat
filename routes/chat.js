@@ -31,12 +31,12 @@ const pusher = new Pusher({
 // });
 router.post("/", async (req, res, next) => {
 
-  const { room,message } = req.body;
-
-
+  const { room,content } = req.body.mesg;
+const {mesg}=req.body
+console.log("mesg",mesg)
   try {
     // await pusher.trigger('chat-channel', 'new-message', { message });
-    await pusher.trigger(room, 'new-message', { message });
+    await pusher.trigger(room, 'new-message', { content });
     res.json({ message: 'Message  successfully sent' });
   } catch (error) {
     console.error(error);
