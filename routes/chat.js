@@ -8,40 +8,28 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL; // Replace with your S
 
 const supabase = createClient(supabaseUrl, supabasePublicKey);
 
-// const pusher = new Pusher({
-//   appId:    process.env.PUBLIC_PUSHER_APP_ID,
-//   key:      process.env.PUBLIC_PUSHER_KEY,
-//   secret:   process.env.PUBLIC_PUSHER_SECRET,
-//   cluster:  process.env.PUBLIC_PUSHER_CLUSTER,
-//   useTLS: true
-// });
 const pusher = new Pusher({
-  appId: "1813007",
-  key: "e01912a32c34c280e6eb",
-  secret: "6bcb8f5f082d93a4ba8c",
-  cluster: "ap2",
+  appId:    process.env.PUBLIC_PUSHER_APP_ID,
+  key:      process.env.PUBLIC_PUSHER_KEY,
+  secret:   process.env.PUBLIC_PUSHER_SECRET,
+  cluster:  process.env.PUBLIC_PUSHER_CLUSTER,
   useTLS: true
 });
-
-// router.post("/chat", async (req, res, next) => {
-//   const { Room,message } = req.body;
-
-
-//   try {
-//     // await pusher.trigger('chat-channel', 'new-message', { message });
-//     await pusher.trigger(Room, 'new-message', { message });
-//     res.json({ message: 'Message  successfully sent' });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Failed to send message' });
-//   }
+// const pusher = new Pusher({
+//   appId: "1813007",
+//   key: "e01912a32c34c280e6eb",
+//   secret: "6bcb8f5f082d93a4ba8c",
+//   cluster: "ap2",
+//   useTLS: true
 // });
+
+
 router.post("/", async (req, res, next) => {
 
   const {message,room,email,time} = req.body;
 
   try {
-    // await pusher.trigger('chat-channel', 'new-message', { message });
+
     await pusher.trigger(room, 'new-message', { message });
     res.json({ message: 'Message  successfully sent' });
   } catch (error) {
@@ -60,10 +48,10 @@ router.post("/", async (req, res, next) => {
 
   if (error) {
     console.error('Error inserting data:', error);
-    // Handle errors appropriately (e.g., display error message to user)
+
   } else {
     console.log('Data inserted successfully:', data);
-    // Handle successful insertion (e.g., redirect to confirmation page)
+
   }
 }
 );
