@@ -25,7 +25,7 @@ router.post("/", async (req, res, next) => {
   console.log(mesg)
   const message=mesg.message
   const room=mesg.room
-  const email=mesg.email
+  const sender=mesg.sender
   const time=mesg.time
 
   try {
@@ -39,7 +39,7 @@ router.post("/", async (req, res, next) => {
   }
   const chat_data=
     {
-      sender:email,
+      sender:sender,
       message:message,
       room:room,
       
