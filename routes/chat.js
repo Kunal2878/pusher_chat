@@ -17,12 +17,13 @@ const pusher = new Pusher({
 });
 
 router.post("/chat", async (req, res, next) => {
-  const { message } = req.body;
+  const { Room,message } = req.body;
 
 
   try {
-    await pusher.trigger('chat-channel', 'new-message', { message });
-    res.json({ message: 'Message sent successfully' });
+    // await pusher.trigger('chat-channel', 'new-message', { message });
+    await pusher.trigger(Room, 'new-message', { message });
+    res.json({ message: 'Message  successfully sent' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to send message' });
@@ -34,7 +35,7 @@ router.post("/", async (req, res, next) => {
 
   try {
     await pusher.trigger('chat-channel', 'new-message', { message });
-    res.json({ message: 'Message sent successfully' });
+    res.json({ message: 'Message sent from home successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to send message' });

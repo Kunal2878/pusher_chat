@@ -23,7 +23,7 @@ app.post("/chat", async (req, res, next) => {
 
 
   try {
-    await pusher.trigger(Room, 'new-message', { message });
+    await pusher.trigger("Room", 'new-message', { message });
     res.json({ message: message });
   } catch (error) {
     console.error(error);
