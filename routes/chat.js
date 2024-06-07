@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Pusher = require('pusher');
+const { createClient } = require('@supabase/supabase-js');
+
+const supabasePublicKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY; // Replace with your Supabase project URL
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL; // Replace with your Supabase public key
+
+const supabase = createClient(supabaseUrl, supabasePublicKey);
+
 // const pusher = new Pusher({
 //   appId:    process.env.PUBLIC_PUSHER_APP_ID,
 //   key:      process.env.PUBLIC_PUSHER_KEY,
@@ -41,12 +48,25 @@ router.post("/", async (req, res, next) => {
     console.error(error);
     res.status(500).json({ message: 'Failed to send message' });
   }
-});
-// router.get("/", async (req, res, next) => {
-//   return res.status(200).json({
-//     title: "Express Testing",
-//     message: "The app is working properly!",
-//   });
-// });
+  const chat_data=
+    {
+      sender:email,
+      message:message,
+      room:room,
+      
+    }
+  
+  const { data, error } = await supabase.from('Chat').insert([chat_data]);
+
+  if (error) {
+    console.error('Error inserting data:', error);
+    // Handle errors appropriately (e.g., display error message to user)
+  } else {
+    console.log('Data inserted successfully:', data);
+    // Handle successful insertion (e.g., redirect to confirmation page)
+  }
+}
+);
+
 
 module.exports = router;
