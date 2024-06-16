@@ -17,19 +17,7 @@ const pusher = new Pusher({
 app.use(cors({ origin: true })); // Adjust origin as needed
 app.use(express.json());
 app.use("/chat", chat);
-// app.post("/chat", async (req, res, next) => {
-//   const { Room,message } = req.body;
 
-
-
-//   try {
-//     await pusher.trigger("Room", 'new-message', { message });
-//     res.json({ message: message });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Failed to send message to the client' });
-//   }
-// });
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`,process.env.PUSHER_CLUSTER);
 });
