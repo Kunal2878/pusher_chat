@@ -27,7 +27,7 @@ app.post("/chat", async (req, res, next) => {
     res.json({ message: message });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Failed to send message' });
+    res.status(500).json({ message: 'Failed to send message to the client' });
   }
 });
 app.listen(port, () => {

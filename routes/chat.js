@@ -20,9 +20,8 @@ const pusher = new Pusher({
 
 router.post("/", async (req, res, next) => {
 
-  // const {message,room,email,time} = req.body;
   const mesg = req.body;
-  console.log(mesg)
+
   const message=mesg.message
   const room=mesg.room
   const sender=mesg.sender
@@ -35,25 +34,9 @@ router.post("/", async (req, res, next) => {
     res.json({ message: 'Message  successfully sent' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Failed to send message' });
+    res.status(500).json({ message: 'Failed to send message from chat' });
   }
-  // const chat_data=
-  //   {
-  //     sender:sender,
-  //     message:message,
-  //     room:room,
-      
-  //   }
-  
-  // const { data, error } = await supabase.from('Chat').insert([chat_data]);
-
-  // if (error) {
-  //   console.error('Error inserting data:', error);
-
-  // } else {
-  //   console.log('Data inserted successfully:', data);
-
-  // }
+ 
 }
 );
 
