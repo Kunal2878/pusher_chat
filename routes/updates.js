@@ -15,21 +15,17 @@ const pusher = new Pusher({
 
 router.post("/", async (req, res, next) => {
 
-  const mesg = req.body;
+  const {room} = req.body;
 
-  const message=mesg.message
-  const room=mesg.room
-  const sender=mesg.sender
-  const time=mesg.time
+
 
   try {
 
-    // await pusher.trigger(room, 'new-message', { message });
-    await pusher.trigger(room, 'new-message', mesg);
-    res.json({ message: 'Message  successfully sent' });
+    await pusher.trigger(room, 'alert', room);
+    res.json({ message: 'Alert sent  successfully ' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Failed to send message from chat' });
+    res.status(500).json({ message: 'Failed to send alert from chat' });
   }
  
 }
