@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
   const time=mesg.time
 
   try {
-
+console.log(mesg,room)
     // await pusher.trigger(room, 'new-message', { message });
     await pusher.trigger(room, 'new-message', mesg);
     res.json({ message: 'Message  successfully sent' });
